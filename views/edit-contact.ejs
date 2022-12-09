@@ -1,0 +1,40 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Edit Contact</h2>
+
+      <!--menampilkan alert jika terjadi salah pada input email dan mobile-->
+      <% if (typeof errors != 'undefined') { %>
+      <div class="alert alert-danger" role="alert">
+        <ul>
+          <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+          <% }) %>
+        </ul>
+      </div>
+      <% } %>
+
+      <!--Tabel input data-->
+      <form method="post" action="/contact/update">
+          <input type ="hidden" name="oldName" value="<%= contact.oldName || contact.name %>" />
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name" required value= "<%= contact.name %>" />
+        </div>
+
+        <div class="mb-3">
+          <label for="mobile" class="form-label">Mobile</label>
+          <input type="text" class="form-control" id="mobile" name="mobile" required value="<%= contact.mobile %>" />
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" required value="<%= contact.email %>" />
+        </div>
+
+        <!--Tombol Submit-->
+        <button type="submit" class="btn btn-primary">Edit Contact Data</button>
+      </form>
+    </div>
+  </div>
+</div>
